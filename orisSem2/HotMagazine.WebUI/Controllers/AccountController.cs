@@ -105,28 +105,35 @@ namespace HotMagazine.WebUI.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<IActionResult> ChangePassword(ProfileViewModel model)
+        public async Task<IActionResult> ChangePassword(string CurrentPassword, string NewPassword, string ConfirmPassword)
         {
-            if (!ModelState.IsValid)
-                return View("Profile", model);
-
             var user = await _userManager.GetUserAsync(User);
 
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-
-            if (result.Succeeded)
+            if (user == null)
             {
-                TempData["Success"] = "Пароль успешно изменён.";
+                TempData["PasswordError"] = "User not found.";
                 return RedirectToAction("Profile");
             }
 
-            foreach (var error in result.Errors)
+            if (NewPassword != ConfirmPassword)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                TempData["PasswordError"] = "New password and confirmation do not match.";
+                return RedirectToAction("Profile");
             }
 
-            return View("Profile", model);
+            var result = await _userManager.ChangePasswordAsync(user, CurrentPassword, NewPassword);
+
+            if (result.Succeeded)
+            {
+                TempData["PasswordSuccess"] = "Password updated successfully.";
+            }
+            else
+            {
+                TempData["PasswordError"] = string.Join(" ", result.Errors.Select(e => e.Description));
+            }
+
+            return RedirectToAction("Profile");
         }
+
     }
 }
