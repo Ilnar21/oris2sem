@@ -349,19 +349,6 @@
 </body>
 </html>
 
-<script>
-	fetch('/api/user/me', {
-		credentials: 'include'  
-	})
-			.then(res => res.json())
-			.then(user => {
-				if(user && user.name){
-					document.getElementById('user-greeting').textContent = `Привет, ${user.name}!`;
-				} else {
-					window.location.href = '/login.html';
-				}
-			});
-</script>
 
 <span id="dayOfWeek"></span>
 
