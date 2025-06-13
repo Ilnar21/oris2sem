@@ -1,0 +1,103 @@
+﻿@model HotMagazine.WebUI.Models.CreateNewsViewModel
+
+@{
+ViewData["Title"] = "Add News";
+}
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: #f7f9fc;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: .5rem;
+        display: block;
+        color: #444;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        width: 100%;
+        padding: .75rem;
+        margin-bottom: 1.25rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    textarea {
+        height: 150px;
+        resize: vertical;
+    }
+
+    span.field-validation-error {
+        color: crimson;
+        font-size: 0.875rem;
+    }
+
+    button {
+        width: 100%;
+        padding: .75rem;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Add News</h2>
+
+    <form asp-controller="Home" asp-action="CreateNews" method="post">
+        @Html.AntiForgeryToken()
+
+        <div>
+            <label asp-for="Title"></label>
+            <input asp-for="Title" />
+            <span asp-validation-for="Title"></span>
+        </div>
+
+        <div>
+            <label asp-for="Category"></label>
+            <select asp-for="Category" asp-items="Model.Categories">
+                <option value="">-- Select category --</option>
+            </select>
+            <span asp-validation-for="Category"></span>
+        </div>
+
+        <div>
+            <label asp-for="ImagePath"></label>
+            <input asp-for="ImagePath" />
+            <span asp-validation-for="ImagePath"></span>
+        </div>
+
+        <div>
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content"></textarea>
+            <span asp-validation-for="Content"></span>
+        </div>
+
+        <button type="submit">Add News</button>
+    </form>
+</div>

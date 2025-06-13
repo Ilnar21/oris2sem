@@ -1,0 +1,63 @@
+﻿@model ProfileViewModel
+@{
+ViewData["Title"] = "Профиль";
+}
+
+<style>
+    .profile-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-family: Arial, sans-serif;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+        border: 3px solid #ddd;
+    }
+
+    .profile-username {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .profile-email {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .logout-button {
+        padding: 10px 20px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .logout-button:hover {
+        background-color: #c0392b;
+    }
+</style>
+
+<div class="profile-container">
+    <img src="/sport/images/user.png" alt="User Avatar" class="profile-avatar">
+    <div class="profile-username">@Model.UserName</div>
+
+    <form asp-controller="Account" asp-action="Logout" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="logout-button">Exit</button>
+    </form>
+</div>

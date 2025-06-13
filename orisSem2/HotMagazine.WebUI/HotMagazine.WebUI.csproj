@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>orisSem2</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\css\font-awesome.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\fonts\fontawesome-webfont-1.eot" />
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\fonts\fontawesome-webfont.eot" />
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\fonts\fontawesome-webfont.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\fonts\fontawesome-webfont.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\nunforest.com\font-awesome\4.2.0\fonts\fontawesome-webfont.woff" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HotMagazine.Application\HotMagazine.Application.csproj" />
+      <ProjectReference Include="..\HotMagazine.Infrastructure\HotMagazine.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        <PrivateAssets>all</PrivateAssets>
+      </PackageReference>
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="Views\Sport\index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Views\Home\SportCategory.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\admiro\template\" />
+    </ItemGroup>
+
+</Project>

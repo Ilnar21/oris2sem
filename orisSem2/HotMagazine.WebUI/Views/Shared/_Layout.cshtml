@@ -1,0 +1,22 @@
+﻿@using HotMagazine.Infrastructure.Identity
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>HotMagazine</title>
+    <link rel="stylesheet" href="/sport/css/style.css" />\
+</head>
+<body>
+<header>
+ 
+</header>
+<div class="container">
+    @RenderBody()
+</div>
+</body>
+</html>
