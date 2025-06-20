@@ -87,7 +87,8 @@ namespace HotMagazine.WebUI.Controllers
                 .Where(n => !shownIds.Contains(n.Id))
                 .Take(4)
                 .ToList();
-            
+
+            // Популярные новости по количеству комментариев (топ 5)
             var popularNews = _context.News
                 .OrderByDescending(n => n.Comments.Count)
                 .Take(5)
@@ -128,7 +129,8 @@ namespace HotMagazine.WebUI.Controllers
             ViewBag.CurrentCategory = category;
             ViewBag.CurrentPage = page;
             ViewBag.TotalPages = (int)System.Math.Ceiling((double)totalItems / pageSize);
-            
+
+            // Добавляем популярные новости (топ 5 по количеству комментариев)
             ViewBag.PopularNews = _context.News
                 .OrderByDescending(n => n.Comments.Count)
                 .Take(5)
@@ -150,7 +152,8 @@ namespace HotMagazine.WebUI.Controllers
                 .ToList();
 
             ViewBag.CurrentCategory = category;
-            
+
+            // Добавляем популярные новости (топ 5 по количеству комментариев)
             ViewBag.PopularNews = _context.News
                 .OrderByDescending(n => n.Comments.Count)
                 .Take(5)
@@ -164,7 +167,7 @@ namespace HotMagazine.WebUI.Controllers
         [HttpGet]
         public IActionResult CreateNews()
         {
-            var model = new CreateNewsViewModel(); 
+            var model = new CreateNewsViewModel(); // категории уже заполняются внутри
             return View(model);
         }
 

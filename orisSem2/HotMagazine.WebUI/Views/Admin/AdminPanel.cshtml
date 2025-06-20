@@ -95,6 +95,26 @@
                 <div class="col-sm-6 col-12">
                   <h2>All News</h2>
                 </div>
+                <form asp-action="AdminPanel" method="get" class="mb-3">
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <select class="form-select" name="authorId" onchange="this.form.submit()">
+                        <option value="">All Authors</option>
+                        @foreach (var user in Model.Users)
+                        {
+                        if (user.Email == Model.SelectedAuthorId)
+                        {
+                        <option value="@user.Email" selected>@user.Email</option>
+                        }
+                        else
+                        {
+                        <option value="@user.Email">@user.Email</option>
+                        }
+                        }
+                      </select>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -111,7 +131,8 @@
                         <tr>
                           <th>ID</th>
                           <th>Title</th>
-                          <th>Data</th>
+                          <th>Author</th> 
+                          <th>Date</th>
                           <th>Action</th>
                         </tr>
                         </thead>
@@ -121,9 +142,10 @@
                           <tr>
                             <td>@item.Id</td>
                             <td>@item.Title</td>
+                            <td>@item.Author</td> 
                             <td>@item.PublishedAt.ToString("dd.MM.yyyy")</td>
                             <td>
-                              <form asp-action="DeleteNews" method="post" onsubmit="return confirm('Delete news?');" >
+                              <form asp-action="DeleteNews" method="post" onsubmit="return confirm('Delete news?');">
                                 <input type="hidden" name="id" value="@item.Id" />
                                 <button type="submit" class="btn btn-danger btn-sm">DELETE</button>
                               </form>
@@ -132,6 +154,7 @@
                         }
                         </tbody>
                       </table>
+
                       <h2>Users</h2>
                       @if (TempData["ErrorMessage"] != null)
                       {
@@ -172,7 +195,6 @@
                         }
                         </tbody>
                       </table>
-
                     }
                     else
                     {

@@ -134,6 +134,5 @@ namespace HotMagazine.WebUI.Controllers
 
             return RedirectToAction("Profile");
         }
-
     }
 }

@@ -13,7 +13,6 @@ namespace HotMagazine.Domain.Models
 
         // Новое поле
         public string Author { get; set; }
-        
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
         
     }

@@ -25,19 +25,27 @@ namespace HotMagazine.Web.Controllers
             _signInManager = signInManager;
         }
 
-        public async Task<IActionResult> AdminPanel()
+        public async Task<IActionResult> AdminPanel(string authorId = null)
         {
-            var news = await _context.News.ToListAsync();
+            var newsQuery = _context.News.AsQueryable();
+            
+            if (!string.IsNullOrEmpty(authorId))
+            {
+                newsQuery = newsQuery.Where(n => n.Author == authorId);
+            }
+            var news = await newsQuery.ToListAsync();
             var users = await _userManager.Users.ToListAsync();
 
             var model = new AdminDashboardViewModel
             {
                 NewsList = news,
-                Users = users
+                Users = users,
+                SelectedAuthorId = authorId 
             };
 
             return View(model);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

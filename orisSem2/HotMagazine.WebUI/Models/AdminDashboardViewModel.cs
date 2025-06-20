@@ -5,4 +5,5 @@ public class AdminDashboardViewModel
 {
     public List<News> NewsList { get; set; }
     public List<AppUser> Users { get; set; }
+    public string SelectedAuthorId { get; set; }
 }
