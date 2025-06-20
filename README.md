@@ -79,8 +79,7 @@ Frontend	Razor Views + HTML/CSS/JS
     }
 3. Примените миграции и создайте базу данных:
     dotnet ef database update --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
-4. Запустите проект
- Работа с миграциями
+4. Запустите проект с миграциями
 
 Добавить миграцию:
     dotnet ef migrations add MigrationName --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
