@@ -65,3 +65,27 @@ Frontend	Razor Views + HTML/CSS/JS
 •	User — может просматривать новости, добавлять свои статьи и оставлять комментарии.
 •	Admin — имеет доступ к админ-панели, может удалять новости и пользователей (кроме других админов).
 
+
+
+
+
+Как запустить проект
+1. Клонируйте репозиторий:
+    git clone https://github.com/Ilnar21/oris2sem.git
+    cd HotMagazine
+2. Настройте строку подключения (в appsettings.json):
+    "ConnectionStrings": {
+      "DefaultConnection": "Host=localhost;Database=magazine;Username=postgres;Password=1978"
+    }
+3. Примените миграции и создайте базу данных:
+    dotnet ef database update --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
+4. Запустите проект
+ Работа с миграциями
+Добавить миграцию:
+    dotnet ef migrations add MigrationName --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
+Применить миграции:
+    dotnet ef database update --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
+Если dotnet ef не установлен:
+    dotnet tool install --global dotnet-ef
+
+
