@@ -81,10 +81,13 @@ Frontend	Razor Views + HTML/CSS/JS
     dotnet ef database update --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
 4. Запустите проект
  Работа с миграциями
+
 Добавить миграцию:
     dotnet ef migrations add MigrationName --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
+   
 Применить миграции:
     dotnet ef database update --project HotMagazine.Infrastructure --startup-project HotMagazine.Web
+    
 Если dotnet ef не установлен:
     dotnet tool install --global dotnet-ef
 
